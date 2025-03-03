@@ -1,0 +1,26 @@
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        n = len(secret)
+        countA = 0
+        countB = 0
+        secFreq = [0] * 10
+        gusFreq = [0] * 10
+        
+        for i in range(n):
+            secNum = secret[i]
+            gusNum = guess[i]
+            
+            if secNum == gusNum:
+                countA += 1
+            
+            secFreq[int(secNum)] += 1
+            gusFreq[int(gusNum)] += 1
+        
+        for i in range(10):
+            countB += min(secFreq[i], gusFreq[i])
+        
+        countB -= countA
+        
+        return f"{countA}A{countB}B"
+
+
