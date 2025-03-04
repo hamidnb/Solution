@@ -1,0 +1,14 @@
+class Solution:
+    def checkPowersOfThree(self, n: int) -> bool:
+        
+        def backtrack(i, current):
+            if n == current:
+                return True
+            elif current > n or 3 ** i > n:
+                return False
+
+            if backtrack(i + 1, current + 3 ** i):  
+                return True
+            return backtrack(i + 1, current )
+
+        return backtrack(0,0)  
